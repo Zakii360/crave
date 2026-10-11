@@ -8,13 +8,17 @@
 @media(max-width:1000px){.layout{grid-template-columns:75px minmax(0,1fr)}.sidebar{padding:22px 10px}.nav-label,.nav-text,.nav button{justify-content:center;padding:13px 8px}.nav .ico{width:auto}.explore-grid{grid-template-columns:minmax(240px,.9fr) minmax(270px,1fr)}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:700px){.topbar{height:auto;min-height:68px;padding:12px 15px;flex-wrap:wrap}.brand{font-size:25px}.top-search{order:3;width:100%;max-width:none}.top-actions .plain{display:none}.layout{display:block}.sidebar{position:fixed;z-index:850;bottom:0;left:0;right:0;height:64px;min-height:0;border-right:0;border-top:1px solid var(--line);background:#fffffff2;backdrop-filter:blur(16px);padding:5px 9px}.nav{display:flex;justify-content:space-around;margin:0;gap:2px}.nav button{display:grid;gap:2px;justify-items:center;padding:5px 9px;font-size:9px}.nav .ico{font-size:18px}.nav-text{display:block}.content{padding:22px 13px 90px}.hero{align-items:start}.page-title{font-size:31px}.explore-grid{grid-template-columns:1fr}.map-wrap{grid-row:1;min-height:330px}.map{min-height:330px}.results{max-height:none}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.friends-layout{grid-template-columns:1fr}.friends-panel{max-height:230px;overflow:auto}.section-head{align-items:start}.citybox input{width:125px}.hero .btn{padding:9px}.auth-wrap{min-height:calc(100vh - 132px)}.top-actions{margin-left:auto}}
 
 .explore-grid{grid-template-columns:minmax(230px,.85fr) minmax(360px,1.25fr) minmax(220px,.75fr)}.community-list{max-height:550px;overflow:auto;padding:12px}.mini-review{padding:12px 7px;border-bottom:1px solid var(--line)}.mini-review:last-child{border-bottom:0}.mini-review .mini-author{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted)}.mini-review .mini-author strong{color:var(--ink);font-size:12px}.mini-review h4{margin:10px 0 5px;font-size:13px}.mini-review p{margin:0 0 9px;font-size:12px;color:#555;line-height:1.55;overflow-wrap:anywhere}.mini-review .mini-rating{font-size:11px;color:#555;font-weight:800}.mini-review .btn{margin-top:3px}@media(max-width:1180px){.explore-grid{grid-template-columns:minmax(240px,.9fr) minmax(300px,1.1fr)}.community-panel{display:block;grid-column:1/-1}}@media(max-width:700px){.explore-grid{display:flex;flex-direction:column}.map-wrap{order:-1;min-height:380px}.map{min-height:380px}.results{max-height:420px}}
+
+.search-wrap{position:relative;width:min(440px,44vw);flex-shrink:1;z-index:1001}.search-wrap .top-search{width:100%}.top-search button{background:transparent;color:#555;padding:4px 1px;font-size:17px;line-height:1}.search-suggestions{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:1600;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 18px 55px #00000017}.suggestion-head{font-size:11px;font-weight:900;color:#777;text-transform:uppercase;letter-spacing:1px;margin:1px 2px 11px}.suggestion-grid{display:flex;flex-wrap:wrap;gap:7px}.search-suggestion{display:inline-flex;align-items:center;gap:7px;border:1px solid #e8e8e8;background:#fff;border-radius:999px;padding:9px 11px;color:#282828;font-size:12px;font-weight:750;white-space:nowrap}.search-suggestion:hover{background:#f3f3f3;border-color:#d9d9d9}.search-suggestion .suggestion-icon{font-size:15px}.search-suggest-action{width:100%;display:flex;justify-content:space-between;align-items:center;background:#f7f7f7;border-radius:11px;padding:11px 12px;margin-bottom:12px;text-align:left;font-weight:800;color:#222}.search-suggest-action span{color:#777}.search-suggestion-note{font-size:11px;color:#777;margin:12px 2px 1px;line-height:1.5}.search-result-tools{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.dietary-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:-7px 0 20px}.dietary-label{font-size:11px;color:var(--muted);font-weight:800;margin-right:2px}.dietary-row .chip{padding:7px 10px;font-size:11px}.dietary-row .chip.active{background:#171717;color:#fff;border-color:#171717}
+@media(max-width:700px){.search-wrap{order:3;width:100%;max-width:none}.search-wrap .top-search{width:100%;max-width:none}.search-suggestions{left:0;right:0;max-height:65vh;overflow:auto}}
 </style></head><body>
 <div class="app">
-<header class="topbar"><div class="brand">crave <em>:)</em></div><label class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Find tacos, coffee, noodles…" autocomplete="off"><span>↵</span></label><div class="top-actions"><button class="btn plain small" id="headerCity">⌖ Choose city</button><button class="btn primary small" id="headerAuth">Sign in</button><button class="avatar hidden" id="headerAvatar" title="Profile">?</button></div></header>
+<header class="topbar"><div class="brand">crave <em>:)</em></div><div class="search-wrap"><div class="top-search"><span>⌕</span><input id="globalSearch" placeholder="Search a place, dish, or craving…" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="searchSuggestions"><button type="button" id="globalSearchGo" aria-label="Search">↵</button></div><div class="search-suggestions hidden" id="searchSuggestions" role="listbox"></div></div><div class="top-actions"><button class="btn plain small" id="headerCity">⌖ Choose city</button><button class="btn primary small" id="headerAuth">Sign in</button><button class="avatar hidden" id="headerAvatar" title="Profile">?</button></div></header>
 <div id="authView" class="auth-wrap"><div class="auth-card"><div class="brand">crave <em>:)</em></div><div class="eyebrow">Find a place to eat</div><h1 class="page-title" id="authTitle">Find somewhere good.</h1><p class="subtitle" id="authSubtitle">Find places nearby, save favorites, and share recommendations with friends.</p><form id="authForm"><div class="field"><label for="authUsername">Username</label><input id="authUsername" required minlength="3" maxlength="24" pattern="[A-Za-z0-9_]+" autocomplete="username" placeholder="yourname"></div><div class="field hidden" id="displayField"><label for="authDisplay">Display name</label><input id="authDisplay" maxlength="50" placeholder="What should we call you?"></div><div class="field"><label for="authPassword">Password</label><input id="authPassword" type="password" required minlength="8" autocomplete="current-password" placeholder="At least 8 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Continue</button></form><div class="auth-toggle" id="authToggleText">New here? <button class="link" id="authToggle">Create an account</button></div></div></div>
 <div id="mainApp" class="layout hidden"><aside class="sidebar"><div class="nav-label">Discover</div><nav class="nav"><button class="active" data-view="explore"><span class="ico">⌖</span><span class="nav-text">Explore</span></button><button data-view="feed"><span class="ico">✳</span><span class="nav-text">Reviews</span></button><button data-view="saved"><span class="ico">♡</span><span class="nav-text">Saved</span></button><button data-view="friends"><span class="ico">♧</span><span class="nav-text">Friends & chat</span></button><button data-view="profile"><span class="ico">◉</span><span class="nav-text">Profile</span></button></nav></aside>
 <main class="content">
-<section class="view active" id="view-explore"><div class="hero"><div><div class="eyebrow">Explore</div><h1 class="page-title">Where do you want to eat?</h1><p class="subtitle">Find restaurants, cafés, coffee shops, and places for a quick bite.</p></div></div><div class="filters"><button class="chip active" data-kind="all">Everything</button><button class="chip" data-kind="restaurant">Restaurants</button><button class="chip" data-kind="cafe">Coffee & cafés</button><button class="chip" data-kind="fast_food">Quick bites</button><button class="chip" data-kind="bar">Bars</button><div class="citybox"><span>⌖</span><input id="cityInput" placeholder="Choose a city…"><button class="btn soft small" id="cityGo">Go</button></div><button class="btn plain small" id="useLocation">◎ Near me</button></div><div class="explore-grid"><div class="panel"><div class="panel-head"><div><h3 id="resultTitle">Places around you</h3><div class="muted" style="font-size:11px;margin-top:4px" id="resultCount">Getting your bearings…</div></div><button class="btn plain small" id="refreshPlaces">↻ Refresh</button></div><div class="results" id="placeResults"><div class="empty"><b>Loading places...</b>Please wait.</div></div></div><div class="panel map-wrap"><div id="map" class="map"></div><div class="map-caption">⌖ OpenStreetMap</div></div><div class="panel community-panel"><div class="panel-head"><div><h3>From the community</h3><div class="muted" style="font-size:11px;margin-top:4px">Recent reviews</div></div><button class="btn plain small" data-view="feed">See all</button></div><div id="miniFeed" class="community-list"><div class="empty"><b>Good food travels.</b>Reviews will show up here.</div></div></div></div><p class="footer-note">Map data © OpenStreetMap contributors. Listings and details vary by area.</p></section>
+<section class="view active" id="view-explore"><div class="hero"><div><div class="eyebrow">Explore</div><h1 class="page-title">Where do you want to eat?</h1><p class="subtitle">Find restaurants, cafés, coffee shops, and places for a quick bite.</p></div></div><div class="filters"><button class="chip active" data-kind="all">Everything</button><button class="chip" data-kind="restaurant">Restaurants</button><button class="chip" data-kind="cafe">Coffee & cafés</button><button class="chip" data-kind="fast_food">Quick bites</button><button class="chip" data-kind="bar">Bars</button><div class="citybox"><span>⌖</span><input id="cityInput" placeholder="Choose a city…"><button class="btn soft small" id="cityGo">Go</button></div><button class="btn plain small" id="useLocation">◎ Near me</button></div><div class="dietary-row"><span class="dietary-label">Dietary</span><button class="chip active" data-diet="">Any</button><button class="chip" data-diet="halal">Halal</button><button class="chip" data-diet="halal.only">Halal only</button><button class="chip" data-diet="vegetarian">Vegetarian</button><button class="chip" data-diet="vegan">Vegan</button><button class="chip" data-diet="kosher">Kosher</button><button class="chip" data-diet="gluten_free">Gluten-free</button></div><div class="explore-grid"><div class="panel"><div class="panel-head"><div><h3 id="resultTitle">Places around you</h3><div class="muted" style="font-size:11px;margin-top:4px" id="resultCount">Getting your bearings…</div></div><button class="btn plain small" id="refreshPlaces">↻ Refresh</button></div><div class="results" id="placeResults"><div class="empty"><b>Loading places...</b>Please wait.</div></div></div><div class="panel map-wrap"><div id="map" class="map"></div><div class="map-caption">⌖ OpenStreetMap</div></div><div class="panel community-panel"><div class="panel-head"><div><h3>From the community</h3><div class="muted" style="font-size:11px;margin-top:4px">Recent reviews</div></div><button class="btn plain small" data-view="feed">See all</button></div><div id="miniFeed" class="community-list"><div class="empty"><b>Good food travels.</b>Reviews will show up here.</div></div></div></div><p class="footer-note">Map data © OpenStreetMap contributors. Listings and dietary labels depend on map data. Confirm dietary requirements directly with the restaurant.</p></section>
 <section class="view" id="view-feed"><div class="section-head"><div><div class="eyebrow">Community</div><h1 class="page-title">Reviews</h1><p class="subtitle">See what other crave users think of a place.</p></div><button class="btn primary" id="writeReview">＋ Write a review</button></div><div id="reviewFeed"></div></section>
 <section class="view" id="view-saved"><div class="section-head"><div><div class="eyebrow">Saved</div><h1 class="page-title">Saved places</h1><p class="subtitle">Places you have bookmarked.</p></div></div><div id="savedList"></div></section>
 <section class="view" id="view-friends"><div class="section-head"><div><div class="eyebrow">Friends</div><h1 class="page-title">Friends and messages</h1><p class="subtitle">Share places and chat with friends.</p></div></div><div class="friends-layout"><div class="panel"><div class="panel-head"><h3>Find people</h3></div><div style="padding:12px;display:flex;gap:7px"><input id="friendSearch" placeholder="Search username" style="min-width:0;width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;outline:0"><button class="btn soft small" id="findFriends">Find</button></div><div id="friendSearchResults" class="friend-list"></div><div class="panel-head"><h3>Friend requests</h3></div><div id="friendRequests" class="friend-list"></div><div class="panel-head"><h3>Your people</h3></div><div id="friendList" class="friend-list"></div></div><div class="panel chat-panel"><div class="panel-head"><div><h3 id="chatTitle">Pick a friend</h3><div class="muted" id="chatSubtitle" style="font-size:11px;margin-top:4px">Messages and shared places appear here.</div></div><button class="btn plain small" id="sharePlaceBtn">↗ Share place</button></div><div class="chat-messages" id="chatMessages"><div class="empty"><b>Choose a friend</b>Open a conversation to send a message or share a place.</div></div><form class="chat-compose" id="chatForm"><input id="chatInput" placeholder="Write a message…" autocomplete="off" disabled><button class="btn primary" id="chatSend" disabled>Send</button></form></div></div></section>
@@ -39,7 +43,7 @@ const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
 async function accountRequest(payload){const headers={'Content-Type':'application/json','apikey':SUPABASE_KEY};if(sessionToken)headers['x-crave-session']=sessionToken;const res=await fetch(SUPABASE_URL+'/functions/v1/crave-account',{method:'POST',headers,body:JSON.stringify(payload)});const data=await res.json().catch(()=>({error:'The server returned an unreadable response.'}));if(!res.ok||data.error)throw Error(data.error||'Request failed ('+res.status+').');return data}
 function setSession(token){sessionToken=token||'';if(sessionToken)localStorage.setItem('crave_session',sessionToken);else localStorage.removeItem('crave_session')}
 const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let user=null,profile=null,map=null,markers=[],places=[],selectedPlace=null,kind='all',center={lat:40.7128,lon:-74.0060},cityLabel='New York City',conversation=null,activeFriend=null,chatTimer=null,reviewCache=[],favoriteKeys=new Set(),friends=[];let authMode='signin';
+let user=null,profile=null,map=null,markers=[],places=[],selectedPlace=null,kind='all',activeSearch='',dietFilter='',center={lat:40.7128,lon:-74.0060},cityLabel='New York City',conversation=null,activeFriend=null,chatTimer=null,reviewCache=[],favoriteKeys=new Set(),friends=[];let authMode='signin';
 function toast(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),3200)}
 function openModal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modalBack').classList.add('show')};function closeModal(){$('modalBack').classList.remove('show')}
 function initials(p){return (p?.display_name||p?.username||'?').trim().slice(0,1).toUpperCase()}
@@ -54,82 +58,125 @@ function addMarkers(){if(!map)return;markers.forEach(m=>map.removeLayer(m));mark
 window.craveSelectPlace=key=>{const p=places.find(x=>x.place_key===decodeURIComponent(key));if(p)showPlace(p)};
 function mapKind(tags){const amen=tags.amenity||'',cuisine=tags.cuisine||'';if(amen==='cafe'||amen==='ice_cream'||amen==='tea')return'cafe';if(amen==='fast_food'||amen==='food_court')return'fast_food';if(amen==='bar'||amen==='pub'||amen==='biergarten')return'bar';if(amen==='restaurant'||amen==='food_court')return'restaurant';if(tags.shop==='bakery'||tags.shop==='deli')return'cafe';if(cuisine)return'restaurant';return amen||tags.shop||'place'}
 function prettyCategory(p){return (p.category||'place').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase())}
-function placesCacheKey(lat,lon){return `crave_places_cache_v2:${lat.toFixed(2)}:${lon.toFixed(2)}`}
-async function fetchFoodListings(lat,lon){
+function placesCacheKey(lat,lon){return `crave_places_cache_v4:${lat.toFixed(2)}:${lon.toFixed(2)}:${dietFilter||'any'}`}
+const recommendedSearches=[
+  {label:'Halal food',query:'Halal food',icon:'🥙'},
+  {label:'Smash burgers',query:'Smash burgers',icon:'🍔'},
+  {label:'Boba & bubble tea',query:'Boba and bubble tea',icon:'🧋'},
+  {label:'Ramen',query:'Ramen',icon:'🍜'},
+  {label:'Pizza',query:'Pizza',icon:'🍕'},
+  {label:'Tacos',query:'Tacos',icon:'🌮'},
+  {label:'Sushi',query:'Sushi',icon:'🍣'},
+  {label:'Korean BBQ',query:'Korean BBQ',icon:'🥩'},
+  {label:'Brunch',query:'Brunch',icon:'🥞'},
+  {label:'Coffee & cafés',query:'Coffee and cafes',icon:'☕'},
+  {label:'Ice cream',query:'Ice cream',icon:'🍦'},
+  {label:'Bakeries',query:'Bakeries',icon:'🥐'},
+  {label:'Vegetarian',query:'Vegetarian food',icon:'🥑'}
+];
+function closeSearchSuggestions(){const panel=$('searchSuggestions');if(panel)panel.classList.add('hidden');$('globalSearch')?.setAttribute('aria-expanded','false')}
+function renderSearchSuggestions(){
+  const input=$('globalSearch'),panel=$('searchSuggestions');if(!input||!panel)return;
+  const q=input.value.trim();
+  const matches=q?recommendedSearches.filter(x=>(x.label+' '+x.query).toLowerCase().includes(q.toLowerCase())).slice(0,8):recommendedSearches;
+  const searchAction=q?`<button class="search-suggest-action" type="button" data-search-query="${esc(q)}">Search for “${esc(q)}” <span>↵</span></button>`:'';
+  panel.innerHTML=`<div class="suggestion-head">${q?'Search nearby':'Recommended searches'}</div>${searchAction}<div class="suggestion-grid">${matches.map(x=>`<button class="search-suggestion" type="button" data-search-query="${esc(x.query)}"><span class="suggestion-icon">${x.icon}</span>${esc(x.label)}</button>`).join('')}</div>${!q?'<p class="search-suggestion-note">Search a dish, cuisine, restaurant name, or dietary option.</p>':''}`;
+  panel.classList.remove('hidden');input.setAttribute('aria-expanded','true');
+  panel.querySelectorAll('[data-search-query]').forEach(b=>b.onclick=()=>{const query=b.dataset.searchQuery;input.value=query;performGlobalSearch(query)});
+}
+function setDietFilter(condition){
+  dietFilter=condition||'';
+  document.querySelectorAll('[data-diet]').forEach(b=>b.classList.toggle('active',b.dataset.diet===dietFilter));
+  if(activeSearch)performGlobalSearch(activeSearch);else loadPlaces();
+}
+function normalizeFoodElements(elements,lat,lon){
+  const seen=new Set();
+  return (elements||[]).map(el=>{
+    const t=el.tags||{},lat1=el.lat??el.center?.lat,lon1=el.lon??el.center?.lon;
+    if(!t.name||lat1==null||lon1==null||!Number.isFinite(Number(lat1))||!Number.isFinite(Number(lon1)))return null;
+    const source=String(t.source||'osm'),sourceId=String(t.source_id||((el.type||'node')+':'+el.id)),key=source+':'+sourceId;
+    if(seen.has(key))return null;seen.add(key);
+    const addr=[t['addr:housenumber'],t['addr:street']].filter(Boolean).join(' ');
+    return{place_key:key,source,source_id:sourceId,name:t.name,category:mapKind(t),address:addr||t['addr:suburb']||t['addr:city']||'',lat:Number(lat1),lon:Number(lon1),website:t.website||t['contact:website']||null,phone:t.phone||t['contact:phone']||null,opening_hours:t.opening_hours||null,cuisine:t.cuisine||'',tags:t};
+  }).filter(Boolean).sort((a,b)=>distanceKm(lat,lon,a.lat,a.lon)-distanceKm(lat,lon,b.lat,b.lon));
+}
+async function addCommunityRatings(items){
+  if(!items.length)return items;
+  const keys=[...new Set(items.map(p=>p.place_key))];
+  const {data,error}=await db.from('crave_reviews').select('place_key,rating').in('place_key',keys).limit(1000);
+  if(error)return items.map(p=>({...p,avg_rating:null,review_count:0}));
+  const totals=new Map();
+  (data||[]).forEach(r=>{const entry=totals.get(r.place_key)||{sum:0,count:0};entry.sum+=Number(r.rating)||0;entry.count++;totals.set(r.place_key,entry)});
+  return items.map(p=>{const v=totals.get(p.place_key);return {...p,avg_rating:v?.count?v.sum/v.count:null,review_count:v?.count||0}});
+}
+async function fetchFoodListings(lat,lon,query='',condition=dietFilter){
   const controller=new AbortController();
   const timer=setTimeout(()=>controller.abort(),30000);
   try{
     const response=await fetch(SUPABASE_URL+'/functions/v1/crave-places',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
-      body:JSON.stringify({lat,lon}),
-      signal:controller.signal,
-      cache:'no-store'
+      method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY},
+      body:JSON.stringify({lat,lon,query,condition}),signal:controller.signal,cache:'no-store'
     });
     const data=await response.json().catch(()=>({error:'The map service returned an unreadable response.'}));
     if(!response.ok)throw Error(data.error||`Food search failed (${response.status}).`);
     if(!Array.isArray(data.elements))throw Error('The map service returned incomplete data.');
     return data;
+  }catch(error){if(error.name==='AbortError')throw Error('Food search timed out. Try again.');throw error}
+  finally{clearTimeout(timer)}
+}
+function showAllNearby(){activeSearch='';$('globalSearch').value='';closeSearchSuggestions();kind='all';document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='all'));loadPlaces()}
+async function performGlobalSearch(query){
+  query=String(query||'').trim();if(!query){renderSearchSuggestions();$('globalSearch').focus();return}
+  activeSearch=query;kind='all';document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='all'));
+  $('globalSearch').value=query;closeSearchSuggestions();showView('explore');
+  $('resultTitle').textContent='Searching for '+query;$('resultCount').textContent='Checking restaurant listings…';
+  $('placeResults').innerHTML='<div class="empty"><b>Searching for '+esc(query)+'…</b>Looking through nearby food listings.</div>';
+  try{
+    const data=await fetchFoodListings(center.lat,center.lon,query,dietFilter);
+    let found=await addCommunityRatings(normalizeFoodElements(data.elements,center.lat,center.lon));
+    places=found;
+    try{localStorage.setItem(`crave_search_v2:${center.lat.toFixed(2)}:${center.lon.toFixed(2)}:${dietFilter||'any'}:${query.toLowerCase()}`,JSON.stringify({savedAt:Date.now(),places}))}catch{}
+    $('resultTitle').textContent='Results for '+query;
+    addMarkers();renderPlaces();
+    if(!places.length){
+      $('resultCount').textContent='No matches found';
+      $('placeResults').innerHTML=`<div class="empty"><b>No matches for “${esc(query)}” yet.</b>Try a shorter name, another cuisine, or clear the dietary filter.<div class="search-result-tools"><button class="btn soft small" id="clearDietSearch">Clear dietary filter</button><button class="btn plain small" id="searchShowNearby">Show nearby food</button></div></div>`;
+      $('clearDietSearch').onclick=()=>{if(dietFilter)setDietFilter('');else performGlobalSearch(query)};$('searchShowNearby').onclick=showAllNearby;
+      return;
+    }
+    $('resultCount').textContent=`${places.length} results for “${query}”${dietFilter?' · '+({'halal':'Halal','halal.only':'Halal only','vegetarian':'Vegetarian','vegetarian.only':'Vegetarian only','vegan':'Vegan','vegan.only':'Vegan only','kosher':'Kosher','kosher.only':'Kosher only','gluten_free':'Gluten-free'})[dietFilter]:''}`;
+    if(places.length===1)map.setView([places[0].lat,places[0].lon],16);
+    else if(places.length<=35)map.fitBounds(L.latLngBounds(places.map(p=>[p.lat,p.lon])),{padding:[36,36],maxZoom:13});
+    else map.setView([center.lat,center.lon],12);
   }catch(error){
-    if(error.name==='AbortError')throw Error('Food search timed out. Try again.');
-    throw error;
-  }finally{clearTimeout(timer)}
+    $('resultCount').textContent='Search failed';
+    $('placeResults').innerHTML=`<div class="empty"><b>Could not search for “${esc(query)}”.</b>${esc(error.message||'Try again in a moment.')}<div class="search-result-tools"><button class="btn soft small" id="retryGlobalSearch">Try again</button><button class="btn plain small" id="searchShowNearby">Show nearby food</button></div></div>`;
+    $('retryGlobalSearch').onclick=()=>performGlobalSearch(query);$('searchShowNearby').onclick=showAllNearby;
+  }
 }
 async function loadPlaces(){
   initMap();
-  const lat=center.lat,lon=center.lon,cacheKey=placesCacheKey(lat,lon);
-  let cached=null;
-  try{
-    const item=JSON.parse(localStorage.getItem(cacheKey)||'null');
-    if(item&&Array.isArray(item.places)&&Date.now()-item.savedAt<7*24*60*60*1000)cached=item.places;
-  }catch{}
+  const lat=center.lat,lon=center.lon,cacheKey=placesCacheKey(lat,lon);let cached=null;
+  try{const item=JSON.parse(localStorage.getItem(cacheKey)||'null');if(item&&Array.isArray(item.places)&&Date.now()-item.savedAt<7*24*60*60*1000)cached=item.places}catch{}
   $('resultTitle').textContent='Places in '+cityLabel;
-  if(cached&&cached.length){
-    places=cached;
-    addMarkers();
-    renderPlaces();
-    $('resultCount').textContent='Updating nearby listings…';
-  }else{
-    places=[];
-    addMarkers();
-    $('resultCount').textContent='Searching local food listings…';
-    $('placeResults').innerHTML='<div class="empty"><b>Looking around…</b>Finding restaurants, cafés, bakeries, and quick bites.</div>';
-  }
+  if(cached&&cached.length){places=cached;addMarkers();renderPlaces();$('resultCount').textContent='Updating nearby listings…'}
+  else{places=[];addMarkers();$('resultCount').textContent='Searching local food listings…';$('placeResults').innerHTML='<div class="empty"><b>Looking around…</b>Finding restaurants, cafés, bakeries, quick bites, and more.</div>'}
   map.setView([lat,lon],13);
-  let data;
-  try{data=await fetchFoodListings(lat,lon)}
-  catch(error){
-    if(cached&&cached.length){
-      places=cached;
-      addMarkers();
-      renderPlaces();
-      $('resultCount').textContent='Live listings are busy. Showing saved results.';
-      map.setView([lat,lon],13);
-      return;
-    }
+  try{
+    const data=await fetchFoodListings(lat,lon,'',dietFilter);
+    places=await addCommunityRatings(normalizeFoodElements(data.elements,lat,lon));
+    try{localStorage.setItem(cacheKey,JSON.stringify({savedAt:Date.now(),places}))}catch{}
+    addMarkers();renderPlaces();map.setView([lat,lon],13);
+  }catch(error){
+    if(cached&&cached.length){places=cached;addMarkers();renderPlaces();$('resultCount').textContent='Live listings are busy. Showing saved results.';return}
     $('resultCount').textContent='Could not load food listings';
     $('placeResults').innerHTML=`<div class="empty"><b>Food listings are unavailable right now.</b>${esc(error.message||'Try again in a moment.')}<br><button class="btn plain" id="retryPlaces" style="margin-top:12px">Try again</button></div>`;
     $('retryPlaces').onclick=loadPlaces;
-    return;
   }
-  const seen=new Set();
-  places=(data.elements||[]).map(el=>{
-    const t=el.tags||{},lat1=el.lat??el.center?.lat,lon1=el.lon??el.center?.lon;
-    if(!t.name||lat1==null||lon1==null||!Number.isFinite(Number(lat1))||!Number.isFinite(Number(lon1)))return null;
-    const source=String(t.source||'osm'),sourceId=String(t.source_id||((el.type||'node')+':'+el.id)),key=source+':'+sourceId;
-    if(seen.has(key))return null;
-    seen.add(key);
-    const addr=[t['addr:housenumber'],t['addr:street']].filter(Boolean).join(' ');
-    return{place_key:key,source,source_id:sourceId,name:t.name,category:mapKind(t),address:addr||t['addr:suburb']||t['addr:city']||'',lat:Number(lat1),lon:Number(lon1),website:t.website||t['contact:website']||null,phone:t.phone||t['contact:phone']||null,opening_hours:t.opening_hours||null,cuisine:t.cuisine||'',tags:t};
-  }).filter(Boolean).sort((a,b)=>distanceKm(lat,lon,a.lat,a.lon)-distanceKm(lat,lon,b.lat,b.lon));
-  try{localStorage.setItem(cacheKey,JSON.stringify({savedAt:Date.now(),places}))}catch{}
-  addMarkers();
-  renderPlaces();
-  map.setView([lat,lon],13);
 }
 function distanceKm(a,b,c,d){const r=x=>x*Math.PI/180,dl=r(c-a),dn=r(d-b),v=Math.sin(dl/2)**2+Math.cos(r(a))*Math.cos(r(c))*Math.sin(dn/2)**2;return 6371*2*Math.atan2(Math.sqrt(v),Math.sqrt(1-v))}
-function renderPlaces(){const list=places.filter(p=>kind==='all'||p.category===kind||(kind==='restaurant'&&p.category==='restaurant'));$('resultCount').textContent=`${list.length} places found · ratings from crave users`;if(!list.length){$('placeResults').innerHTML='<div class="empty"><b>No places found.</b>Try another city or filter.</div>';return}$('placeResults').innerHTML=list.map(p=>`<article class="place-row" data-place="${esc(p.place_key)}"><div class="place-icon">${iconFor(p)}</div><div class="place-main"><h4>${esc(p.name)}</h4><p>${esc(prettyCategory(p))}${p.cuisine?' · '+esc(p.cuisine.replaceAll(';',', ')):''}${p.address?' · '+esc(p.address):''}</p><div class="meta"><span class="stars">★ ${p.avg_rating?Number(p.avg_rating).toFixed(1):'-'}</span><span>${p.review_count||0} crave reviews</span><span>${distanceKm(center.lat,center.lon,p.lat,p.lon).toFixed(1)} km</span></div><div class="row-actions"><button class="btn soft small" data-action="details" data-key="${esc(p.place_key)}">View & review</button><button class="btn plain small" data-action="save" data-key="${esc(p.place_key)}">${favoriteKeys.has(p.place_key)?'♥ Saved':'♡ Save'}</button><button class="btn plain small" data-action="share" data-key="${esc(p.place_key)}">↗ Share</button></div></div></article>`).join('');$('placeResults').querySelectorAll('[data-action]').forEach(b=>b.onclick=e=>{e.stopPropagation();const p=places.find(x=>x.place_key===b.dataset.key);if(b.dataset.action==='details')showPlace(p);if(b.dataset.action==='save')toggleFavorite(p);if(b.dataset.action==='share')sharePlaceToChat(p)});$('placeResults').querySelectorAll('.place-row').forEach(row=>row.onclick=()=>{const p=places.find(x=>x.place_key===row.dataset.place);if(p){map.setView([p.lat,p.lon],16);markers.find(m=>{const ll=m.getLatLng();return ll.lat===p.lat&&ll.lng===p.lon})?.openPopup()}})}
-async function chooseCity(q){if(!q.trim())return;toast('Finding '+q+'…');try{const res=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+encodeURIComponent(q));if(!res.ok)throw Error('City search unavailable');const arr=await res.json();if(!arr.length)throw Error('Could not find that city. Try a more specific name.');center={lat:+arr[0].lat,lon:+arr[0].lon};cityLabel=arr[0].name.split(',').slice(0,2).join(',');$('cityInput').value=cityLabel;$('cityGo').textContent='Go';await loadPlaces();toast('Exploring '+cityLabel)}catch(e){toast(e.message)}}$('cityGo').onclick=()=>chooseCity($('cityInput').value);$('cityInput').addEventListener('keydown',e=>{if(e.key==='Enter')chooseCity(e.target.value)});$('headerCity').onclick=()=>{showView('explore');$('cityInput').focus()};$('useLocation').onclick=()=>{if(!navigator.geolocation){toast('Location is not available in this browser.');return}navigator.geolocation.getCurrentPosition(async pos=>{center={lat:pos.coords.latitude,lon:pos.coords.longitude};try{const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${center.lat}&lon=${center.lon}`);const d=await r.json();cityLabel=d.address?.city||d.address?.town||d.address?.suburb||'Near me'}catch{cityLabel='Near me'}$('cityInput').value=cityLabel;await loadPlaces();toast('Showing places near you')},()=>toast('Location permission was not granted. Search for a city instead.'),{enableHighAccuracy:false,timeout:9000})};$('refreshPlaces').onclick=loadPlaces;document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>{kind=b.dataset.kind;document.querySelectorAll('[data-kind]').forEach(x=>x.classList.toggle('active',x===b));renderPlaces()});$('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){const q=e.target.value.trim();if(!q)return;const matching=places.filter(p=>(p.name+' '+p.category+' '+p.cuisine).toLowerCase().includes(q.toLowerCase()));if(matching.length){showView('explore');const old=places;places=matching;renderPlaces();places=old}else toast('No matching food places nearby. Use Choose city to change the area.')}});
+function renderPlaces(){const list=places.filter(p=>kind==='all'||p.category===kind||(kind==='restaurant'&&p.category==='restaurant'));const dietName=({'halal':'Halal','halal.only':'Halal only','vegetarian':'Vegetarian','vegetarian.only':'Vegetarian only','vegan':'Vegan','vegan.only':'Vegan only','kosher':'Kosher','kosher.only':'Kosher only','gluten_free':'Gluten-free','sugar_free':'Sugar-free','egg_free':'Egg-free','soy_free':'Soy-free'})[dietFilter]||'';$('resultCount').textContent=activeSearch?`${list.length} results for “${activeSearch}”${dietName?' · '+dietName:''}`:`${list.length} places found${dietName?' · '+dietName:''} · rated by crave users`;if(!list.length){$('placeResults').innerHTML='<div class="empty"><b>No places found.</b>Try another city or filter.</div>';return}$('placeResults').innerHTML=list.map(p=>`<article class="place-row" data-place="${esc(p.place_key)}"><div class="place-icon">${iconFor(p)}</div><div class="place-main"><h4>${esc(p.name)}</h4><p>${esc(prettyCategory(p))}${p.cuisine?' · '+esc(p.cuisine.replaceAll(';',', ')):''}${p.address?' · '+esc(p.address):''}</p><div class="meta"><span class="stars">${p.review_count?'★ '+Number(p.avg_rating).toFixed(1):'No reviews yet'}</span><span>${p.review_count||0} user reviews</span><span>${distanceKm(center.lat,center.lon,p.lat,p.lon).toFixed(1)} km</span></div><div class="row-actions"><button class="btn soft small" data-action="details" data-key="${esc(p.place_key)}">View & review</button><button class="btn plain small" data-action="save" data-key="${esc(p.place_key)}">${favoriteKeys.has(p.place_key)?'♥ Saved':'♡ Save'}</button><button class="btn plain small" data-action="share" data-key="${esc(p.place_key)}">↗ Share</button></div></div></article>`).join('');$('placeResults').querySelectorAll('[data-action]').forEach(b=>b.onclick=e=>{e.stopPropagation();const p=places.find(x=>x.place_key===b.dataset.key);if(b.dataset.action==='details')showPlace(p);if(b.dataset.action==='save')toggleFavorite(p);if(b.dataset.action==='share')sharePlaceToChat(p)});$('placeResults').querySelectorAll('.place-row').forEach(row=>row.onclick=()=>{const p=places.find(x=>x.place_key===row.dataset.place);if(p){map.setView([p.lat,p.lon],16);markers.find(m=>{const ll=m.getLatLng();return ll.lat===p.lat&&ll.lng===p.lon})?.openPopup()}})}
+async function chooseCity(q){if(!q.trim())return;activeSearch='';$('globalSearch').value='';closeSearchSuggestions();kind='all';document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='all'));toast('Finding '+q+'…');try{const res=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&q='+encodeURIComponent(q));if(!res.ok)throw Error('City search unavailable');const arr=await res.json();if(!arr.length)throw Error('Could not find that city. Try a more specific name.');center={lat:+arr[0].lat,lon:+arr[0].lon};cityLabel=arr[0].name.split(',').slice(0,2).join(',');$('cityInput').value=cityLabel;$('cityGo').textContent='Go';await loadPlaces();toast('Exploring '+cityLabel)}catch(e){toast(e.message)}}$('cityGo').onclick=()=>chooseCity($('cityInput').value);$('cityInput').addEventListener('keydown',e=>{if(e.key==='Enter')chooseCity(e.target.value)});$('headerCity').onclick=()=>{showView('explore');$('cityInput').focus()};$('useLocation').onclick=()=>{activeSearch='';$('globalSearch').value='';closeSearchSuggestions();kind='all';document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind==='all'));if(!navigator.geolocation){toast('Location is not available in this browser.');return}navigator.geolocation.getCurrentPosition(async pos=>{center={lat:pos.coords.latitude,lon:pos.coords.longitude};try{const r=await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${center.lat}&lon=${center.lon}`);const d=await r.json();cityLabel=d.address?.city||d.address?.town||d.address?.suburb||'Near me'}catch{cityLabel='Near me'}$('cityInput').value=cityLabel;await loadPlaces();toast('Showing places near you')},()=>toast('Location permission was not granted. Search for a city instead.'),{enableHighAccuracy:false,timeout:9000})};$('refreshPlaces').onclick=()=>activeSearch?performGlobalSearch(activeSearch):loadPlaces();document.querySelectorAll('[data-kind]').forEach(b=>b.onclick=()=>{kind=b.dataset.kind;document.querySelectorAll('[data-kind]').forEach(x=>x.classList.toggle('active',x===b));renderPlaces()});document.querySelectorAll('[data-diet]').forEach(b=>b.onclick=()=>setDietFilter(b.dataset.diet));$('globalSearch').addEventListener('focus',renderSearchSuggestions);$('globalSearch').addEventListener('input',renderSearchSuggestions);$('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();performGlobalSearch(e.target.value)}else if(e.key==='Escape')closeSearchSuggestions()});$('globalSearchGo').onclick=()=>performGlobalSearch($('globalSearch').value);document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))closeSearchSuggestions()});
 async function ensurePlace(p){const row={place_key:p.place_key,source:p.source||'osm',source_id:p.source_id||p.place_key.replace(/^osm:/,''),name:p.name,category:p.category||null,address:p.address||null,lat:p.lat,lon:p.lon,website:p.website||null,phone:p.phone||null,opening_hours:p.opening_hours||null};const {error}=await db.from('crave_places').upsert(row,{onConflict:'place_key'});if(error)throw error}
 async function showPlace(p){selectedPlace=p;const {data:reviews}=await db.from('crave_reviews').select('*,crave_profiles(username,display_name,avatar_url)').eq('place_key',p.place_key).order('created_at',{ascending:false}).limit(30);const avg=reviews?.length?reviews.reduce((a,r)=>a+r.rating,0)/reviews.length:0;openModal(p.name,`<div class="place-share"><strong>${iconFor(p)} ${esc(prettyCategory(p))}</strong><div class="muted" style="margin:5px 0 8px">${esc(p.address||p.cuisine||cityLabel)}</div><div class="meta"><span class="stars">★ ${reviews?.length?avg.toFixed(1):'No ratings yet'}</span><span>${reviews?.length||0} reviews</span></div><p style="margin:8px 0 0"><a target="_blank" rel="noreferrer" href="https://www.openstreetmap.org/?mlat=${p.lat}&mlon=${p.lon}#map=18/${p.lat}/${p.lon}">Open in OpenStreetMap ↗</a>${p.website?' · <a target="_blank" rel="noreferrer" href="'+esc(p.website)+'">Website ↗</a>':''}</p>${p.opening_hours?'<p class="muted">Hours: '+esc(p.opening_hours)+'</p>':''}</div><h3 style="margin:22px 0 8px">Leave a review</h3><form id="reviewForm"><div class="field"><label>Rating</label><select id="reviewRating"><option value="5">★★★★★ - Loved it</option><option value="4">★★★★☆ - Really good</option><option value="3">★★★☆☆ - It was okay</option><option value="2">★★☆☆☆ - Not great</option><option value="1">★☆☆☆☆ - Disappointed</option></select></div><div class="field"><label>Your review</label><textarea id="reviewBody" rows="3" maxlength="2000" placeholder="What did you order? Would you go back?"></textarea></div><button class="btn primary">Post review</button> <button class="btn plain" type="button" id="modalShare">Share with a friend</button></form><h3 style="margin:24px 0 10px">Community notes</h3><div id="placeReviewList">${reviews?.length?reviews.map(r=>`<div class="feed-card"><div class="feed-top"><span class="avatar">${esc(initials(r.crave_profiles))}</span><div class="who"><strong>${esc(r.crave_profiles?.display_name||'crave user')}</strong><small>@${esc(r.crave_profiles?.username||'user')}</small></div><span class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span></div><p>${esc(r.body||'No written note.')}</p></div>`).join(''):'<div class="empty">No reviews yet. You could be the first.</div>'}</div>`);$('reviewForm').onsubmit=async e=>{e.preventDefault();if(!user)return toast('Sign in to write a review.');try{await ensurePlace(p);const payload={user_id:user.id,place_key:p.place_key,rating:+$('reviewRating').value,body:$('reviewBody').value.trim()};const {error}=await db.from('crave_reviews').upsert(payload,{onConflict:'user_id,place_key'});if(error)throw error;toast('Review posted!');closeModal();await loadReviews();await loadMiniFeed();updateStats();showPlace(p)}catch(err){toast(err.message||'Could not save review')}};$('modalShare').onclick=()=>sharePlaceToChat(p)}
 async function toggleFavorite(p){if(!user)return toast('Sign in to save places.');try{if(favoriteKeys.has(p.place_key)){const {error}=await db.from('crave_favorites').delete().eq('user_id',user.id).eq('place_key',p.place_key);if(error)throw error;favoriteKeys.delete(p.place_key);toast('Removed from saved places')}else{await ensurePlace(p);const {error}=await db.from('crave_favorites').insert({user_id:user.id,place_key:p.place_key});if(error&&error.code!=='23505')throw error;favoriteKeys.add(p.place_key);toast('Saved for later ♡')}renderPlaces();renderSaved();updateStats()}catch(e){toast(e.message||'Could not save place')}}async function loadFavorites(){if(!user)return;const {data,error}=await db.from('crave_favorites').select('place_key').eq('user_id',user.id);if(error)return;favoriteKeys=new Set((data||[]).map(x=>x.place_key))}
