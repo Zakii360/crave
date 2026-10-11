@@ -54,7 +54,7 @@ function addMarkers(){if(!map)return;markers.forEach(m=>map.removeLayer(m));mark
 window.craveSelectPlace=key=>{const p=places.find(x=>x.place_key===decodeURIComponent(key));if(p)showPlace(p)};
 function mapKind(tags){const amen=tags.amenity||'',cuisine=tags.cuisine||'';if(amen==='cafe'||amen==='ice_cream'||amen==='tea')return'cafe';if(amen==='fast_food'||amen==='food_court')return'fast_food';if(amen==='bar'||amen==='pub'||amen==='biergarten')return'bar';if(amen==='restaurant'||amen==='food_court')return'restaurant';if(tags.shop==='bakery'||tags.shop==='deli')return'cafe';if(cuisine)return'restaurant';return amen||tags.shop||'place'}
 function prettyCategory(p){return (p.category||'place').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase())}
-function placesCacheKey(lat,lon){return `crave_places_cache_v1:${lat.toFixed(2)}:${lon.toFixed(2)}`}
+function placesCacheKey(lat,lon){return `crave_places_cache_v2:${lat.toFixed(2)}:${lon.toFixed(2)}`}
 async function fetchFoodListings(lat,lon){
   const controller=new AbortController();
   const timer=setTimeout(()=>controller.abort(),30000);
@@ -116,11 +116,11 @@ async function loadPlaces(){
   places=(data.elements||[]).map(el=>{
     const t=el.tags||{},lat1=el.lat??el.center?.lat,lon1=el.lon??el.center?.lon;
     if(!t.name||lat1==null||lon1==null||!Number.isFinite(Number(lat1))||!Number.isFinite(Number(lon1)))return null;
-    const id=String(el.id),source=el.type||'node',key='osm:'+source+':'+id;
+    const source=String(t.source||'osm'),sourceId=String(t.source_id||((el.type||'node')+':'+el.id)),key=source+':'+sourceId;
     if(seen.has(key))return null;
     seen.add(key);
     const addr=[t['addr:housenumber'],t['addr:street']].filter(Boolean).join(' ');
-    return{place_key:key,source:'osm',source_id:source+':'+id,name:t.name,category:mapKind(t),address:addr||t['addr:suburb']||t['addr:city']||'',lat:Number(lat1),lon:Number(lon1),website:t.website||t['contact:website']||null,phone:t.phone||t['contact:phone']||null,opening_hours:t.opening_hours||null,cuisine:t.cuisine||'',tags:t};
+    return{place_key:key,source,source_id:sourceId,name:t.name,category:mapKind(t),address:addr||t['addr:suburb']||t['addr:city']||'',lat:Number(lat1),lon:Number(lon1),website:t.website||t['contact:website']||null,phone:t.phone||t['contact:phone']||null,opening_hours:t.opening_hours||null,cuisine:t.cuisine||'',tags:t};
   }).filter(Boolean).sort((a,b)=>distanceKm(lat,lon,a.lat,a.lon)-distanceKm(lat,lon,b.lat,b.lon));
   try{localStorage.setItem(cacheKey,JSON.stringify({savedAt:Date.now(),places}))}catch{}
   addMarkers();
